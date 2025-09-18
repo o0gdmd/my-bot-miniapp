@@ -1,35 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Stars Wallet</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Bot Introduction</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        /* Telegram Mini App Dark Theme */
+        body {
+            background-color: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .bot-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--tg-theme-link-color);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--tg-theme-hint-color);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .start-button {
+            width: 90%;
+            padding: 15px;
+            background-color: var(--tg-theme-button-color);
+            color: var(--tg-theme-button-text-color);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .start-button:active {
+            filter: brightness(90%);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>⭐️ Stars Wallet</h1>
-        <div id="loading" class="loading">Loading...</div>
-        <div id="main-content" style="display: none;">
-            <p>Welcome, <span id="username"></span>!</p>
-            <div class="balance-card">
-                <h2>Your Balance</h2>
-                <p id="balance">0 Stars</p>
-                <div class="vip-level">
-                    <p>VIP Level: <span id="vipLevel">N/A</span></p>
-                    <p>Total Deposits: <span id="totalDeposits">0</span> Stars</p>
-                </div>
-            </div>
-            <div class="buttons">
-                <button id="addFundsBtn" class="action-button">➕ Add Funds</button>
-                <button id="withdrawBtn" class="action-button">🏧 Withdraw</button>
-            </div>
-            <div class="info-card">
-                <p>👤 User ID: <span id="userId"></span></p>
-            </div>
-        </div>
+        <img src="https://example.com/your-bot-image.png" alt="Bot Logo" class="bot-logo">
+        
+        <h1>بوت Stars الخاص بك</h1>
+        <p>
+            مرحباً بك في بوت إدارة Stars! يمكنك من خلال هذا البوت شحن رصيدك من النجوم بسهولة، 
+            سحبها إلى محفظة TON الخاصة بك، ومتابعة جميع معاملاتك ومستواك.
+        </p>
+
+        <button class="start-button" onclick="startBot()">ابدأ الآن</button>
     </div>
-    <script src="app.js"></script>
+
+    <script>
+        // Check if Telegram Web App is ready
+        Telegram.WebApp.ready();
+
+        // Function to open the bot
+        function startBot() {
+            // ⚠️ استبدل 'YOUR_BOT_USERNAME' باسم المستخدم الخاص بالبوت الخاص بك
+            Telegram.WebApp.openTelegramLink('https://t.me/YOUR_BOT_USERNAME?start');
+        }
+    </script>
 </body>
 </html>
