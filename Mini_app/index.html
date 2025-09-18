@@ -1,93 +1,107 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bot Introduction</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        /* Telegram Mini App Dark Theme */
-        body {
-            background-color: var(--tg-theme-bg-color);
-            color: var(--tg-theme-text-color);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .bot-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            color: var(--tg-theme-link-color);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 1rem;
-            color: var(--tg-theme-hint-color);
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .start-button {
-            width: 90%;
-            padding: 15px;
-            background-color: var(--tg-theme-button-color);
-            color: var(--tg-theme-button-text-color);
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        .start-button:active {
-            filter: brightness(90%);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stars & TON Wallet Bot Features</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: rgba(0,0,0,0.5);
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    }
+    h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #ffd700;
+        text-shadow: 1px 1px 5px #000;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        background-color: rgba(255, 255, 255, 0.1);
+        margin: 10px 0;
+        padding: 20px;
+        border-radius: 15px;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        display: flex;
+        align-items: flex-start;
+        transition: transform 0.2s, background 0.2s;
+    }
+    li:hover {
+        transform: translateY(-5px);
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    .emoji {
+        font-size: 2rem;
+        margin-right: 15px;
+    }
+    .feature-text {
+        flex: 1;
+    }
+    .highlight {
+        color: #ffd700;
+        font-weight: bold;
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <img src="https://example.com/your-bot-image.png" alt="Bot Logo" class="bot-logo">
-        
-        <h1>بوت Stars الخاص بك</h1>
-        <p>
-            مرحباً بك في بوت إدارة Stars! يمكنك من خلال هذا البوت شحن رصيدك من النجوم بسهولة، 
-            سحبها إلى محفظة TON الخاصة بك، ومتابعة جميع معاملاتك ومستواك.
-        </p>
 
-        <button class="start-button" onclick="startBot()">ابدأ الآن</button>
-    </div>
+<div class="container">
+    <h1>🌟 Stars & TON Wallet Bot Features 🚀💎</h1>
+    <ul>
+        <li>
+            <span class="emoji">✨</span>
+            <div class="feature-text"><span class="highlight">User-Friendly Interface:</span> Clear main menu with all key options: Add Stars ➕, Withdraw 🏧, Account 👤, and Launch Mini App 🚀. Smooth and modern UX for easy interaction and navigation.</div>
+        </li>
+        <li>
+            <span class="emoji">💰</span>
+            <div class="feature-text"><span class="highlight">Stars Management System:</span> Users can easily purchase Stars ⭐ directly inside the bot. Balance updates instantly after successful payment ✅. Tracks total deposits accurately 📊.</div>
+        </li>
+        <li>
+            <span class="emoji">🏧</span>
+            <div class="feature-text"><span class="highlight">Secure Withdrawals:</span> Users can request withdrawals safely and conveniently. Admin receives detailed notifications 📩. Remaining balance updates immediately.</div>
+        </li>
+        <li>
+            <span class="emoji">👛</span>
+            <div class="feature-text"><span class="highlight">TON Wallet Integration:</span> Users can set or update their TON wallet 💎. Supports validation ✅. All transactions linked for seamless crypto management.</div>
+        </li>
+        <li>
+            <span class="emoji">🌟</span>
+            <div class="feature-text"><span class="highlight">VIP Levels & Rewards System:</span> Users earn VIP levels based on deposits 🏅. Higher VIP levels unlock perks 🔥. Encourages engagement and loyalty.</div>
+        </li>
+        <li>
+            <span class="emoji">🚀</span>
+            <div class="feature-text"><span class="highlight">Mini App Support:</span> Launch Mini App directly 🌐. Real-time interaction with bot 📡. Secure Telegram initData validation 🔒.</div>
+        </li>
+        <li>
+            <span class="emoji">📊</span>
+            <div class="feature-text"><span class="highlight">Admin Notifications & Management:</span> Admin gets instant updates for deposits, withdrawals, and VIP upgrades 📩. Efficient user activity tracking 🛠️.</div>
+        </li>
+        <li>
+            <span class="emoji">🔒</span>
+            <div class="feature-text"><span class="highlight">Secure & Reliable Backend:</span> PostgreSQL database 💾. Handles concurrent users ⚡. Ensures payment and wallet data integrity 🔐.</div>
+        </li>
+        <li>
+            <span class="emoji">🌟</span>
+            <div class="feature-text"><span class="highlight">Extra Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience keeps users engaged 🚀💎.</div>
+        </li>
+    </ul>
+</div>
 
-    <script>
-        // Check if Telegram Web App is ready
-        Telegram.WebApp.ready();
-
-        // Function to open the bot
-        function startBot() {
-            // ⚠️ استبدل 'YOUR_BOT_USERNAME' باسم المستخدم الخاص بالبوت الخاص بك
-            Telegram.WebApp.openTelegramLink('https://t.me/YOUR_BOT_USERNAME?start');
-        }
-    </script>
 </body>
 </html>
