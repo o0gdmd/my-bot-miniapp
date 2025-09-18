@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stars & TON Wallet Bot Features</title>
+<title>Stars & TON Wallet Bot</title>
 <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,6 +19,22 @@
         background-color: rgba(0,0,0,0.5);
         border-radius: 20px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+        text-align: center;
+    }
+    .bot-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 30px;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 3px solid #ffd700;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+    .bot-title {
+        font-size: 1.8rem;
+        color: #ffd700;
+        margin-bottom: 25px;
+        text-shadow: 1px 1px 5px #000;
     }
     h1 {
         text-align: center;
@@ -52,17 +68,43 @@
     }
     .feature-text {
         flex: 1;
+        text-align: left;
     }
     .highlight {
         color: #ffd700;
         font-weight: bold;
+    }
+    /* زر START NOW */
+    .start-button {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 40px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(45deg, #ff7e5f, #feb47b);
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .start-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.6);
     }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🌟 Stars & TON Wallet Bot Features 🚀💎</h1>
+    <!-- صورة البوت -->
+    <img class="bot-image" src="https://drive.google.com/file/d/1rWDRdhb_0ZbqxjJyvbf3i6KRCegk3r6E/view?usp=drivesdk" alt="Bot Image">
+
+    <!-- عنوان تحت الصورة -->
+    <div class="bot-title">🌟 Stars & TON Wallet Bot 💎</div>
+
     <ul>
         <li>
             <span class="emoji">✨</span>
@@ -101,6 +143,10 @@
             <div class="feature-text"><span class="highlight">Extra Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience keeps users engaged 🚀💎.</div>
         </li>
     </ul>
+
+    <!-- زر START NOW -->
+    <a href="https://t.me/Tgstarssavebot" class="start-button">START NOW 🚀</a>
+
 </div>
 
 </body>
