@@ -11,11 +11,12 @@
         color: #fff;
         margin: 0;
         padding: 0;
+        font-size: 14px;
     }
     .container {
         max-width: 800px;
         margin: 50px auto;
-        padding: 30px;
+        padding: 25px;
         background-color: rgba(0,0,0,0.5);
         border-radius: 20px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.6);
@@ -31,16 +32,9 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
     .bot-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         color: #ffd700;
-        margin-bottom: 25px;
-        text-shadow: 1px 1px 5px #000;
-    }
-    h1 {
-        text-align: center;
-        font-size: 2.5rem;
         margin-bottom: 20px;
-        color: #ffd700;
         text-shadow: 1px 1px 5px #000;
     }
     ul {
@@ -49,22 +43,24 @@
     }
     li {
         background-color: rgba(255, 255, 255, 0.1);
-        margin: 10px 0;
-        padding: 20px;
+        margin: 8px 0;
+        padding: 15px;
         border-radius: 15px;
-        font-size: 1.1rem;
-        line-height: 1.6;
+        font-size: 0.95rem;
+        line-height: 1.5;
         display: flex;
         align-items: flex-start;
-        transition: transform 0.2s, background 0.2s;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease-out;
     }
-    li:hover {
-        transform: translateY(-5px);
-        background-color: rgba(255, 255, 255, 0.2);
+    li.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
     .emoji {
-        font-size: 2rem;
-        margin-right: 15px;
+        font-size: 1.8rem;
+        margin-right: 12px;
     }
     .feature-text {
         flex: 1;
@@ -74,11 +70,10 @@
         color: #ffd700;
         font-weight: bold;
     }
-    /* زر START NOW */
     .start-button {
         display: inline-block;
-        margin-top: 30px;
-        padding: 15px 40px;
+        margin-top: 25px;
+        padding: 15px 45px;
         font-size: 1.5rem;
         font-weight: bold;
         color: #fff;
@@ -99,55 +94,64 @@
 <body>
 
 <div class="container">
-    <!-- صورة البوت -->
-    <img class="bot-image" src="https://drive.google.com/file/d/1rWDRdhb_0ZbqxjJyvbf3i6KRCegk3r6E/view?usp=drivesdk" alt="Bot Image">
-
-    <!-- عنوان تحت الصورة -->
+    <img class="bot-image" src="https://i.postimg.cc/NMY0c6Nf/IMG-4506.jpg" alt="Bot Image">
     <div class="bot-title">🌟 Stars & TON Wallet Bot 💎</div>
 
     <ul>
         <li>
             <span class="emoji">✨</span>
-            <div class="feature-text"><span class="highlight">User-Friendly Interface:</span> Clear main menu with all key options: Add Stars ➕, Withdraw 🏧, Account 👤, and Launch Mini App 🚀. Smooth and modern UX for easy interaction and navigation.</div>
+            <div class="feature-text"><span class="highlight">User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀. Smooth UX.</div>
         </li>
         <li>
             <span class="emoji">💰</span>
-            <div class="feature-text"><span class="highlight">Stars Management System:</span> Users can easily purchase Stars ⭐ directly inside the bot. Balance updates instantly after successful payment ✅. Tracks total deposits accurately 📊.</div>
+            <div class="feature-text"><span class="highlight">Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅.</div>
         </li>
         <li>
             <span class="emoji">🏧</span>
-            <div class="feature-text"><span class="highlight">Secure Withdrawals:</span> Users can request withdrawals safely and conveniently. Admin receives detailed notifications 📩. Remaining balance updates immediately.</div>
+            <div class="feature-text"><span class="highlight">Secure Withdrawals:</span> Users request withdrawals safely. Admin notifications 📩.</div>
         </li>
         <li>
             <span class="emoji">👛</span>
-            <div class="feature-text"><span class="highlight">TON Wallet Integration:</span> Users can set or update their TON wallet 💎. Supports validation ✅. All transactions linked for seamless crypto management.</div>
+            <div class="feature-text"><span class="highlight">TON Wallet Integration:</span> Set/update TON wallet 💎. All transactions linked.</div>
         </li>
         <li>
             <span class="emoji">🌟</span>
-            <div class="feature-text"><span class="highlight">VIP Levels & Rewards System:</span> Users earn VIP levels based on deposits 🏅. Higher VIP levels unlock perks 🔥. Encourages engagement and loyalty.</div>
+            <div class="feature-text"><span class="highlight">VIP Levels & Rewards:</span> Earn VIP levels 🏅 based on deposits. Unlock perks 🔥.</div>
         </li>
         <li>
             <span class="emoji">🚀</span>
-            <div class="feature-text"><span class="highlight">Mini App Support:</span> Launch Mini App directly 🌐. Real-time interaction with bot 📡. Secure Telegram initData validation 🔒.</div>
+            <div class="feature-text"><span class="highlight">Mini App Support:</span> Launch Mini App 🌐. Secure Telegram initData validation 🔒.</div>
         </li>
         <li>
             <span class="emoji">📊</span>
-            <div class="feature-text"><span class="highlight">Admin Notifications & Management:</span> Admin gets instant updates for deposits, withdrawals, and VIP upgrades 📩. Efficient user activity tracking 🛠️.</div>
+            <div class="feature-text"><span class="highlight">Admin Notifications:</span> Instant updates for deposits, withdrawals, VIP upgrades 📩.</div>
         </li>
         <li>
             <span class="emoji">🔒</span>
-            <div class="feature-text"><span class="highlight">Secure & Reliable Backend:</span> PostgreSQL database 💾. Handles concurrent users ⚡. Ensures payment and wallet data integrity 🔐.</div>
+            <div class="feature-text"><span class="highlight">Secure Backend:</span> PostgreSQL 💾. Handles concurrent users ⚡. Ensures payment & wallet data integrity 🔐.</div>
         </li>
         <li>
             <span class="emoji">🌟</span>
-            <div class="feature-text"><span class="highlight">Extra Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience keeps users engaged 🚀💎.</div>
+            <div class="feature-text"><span class="highlight">Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience 🚀💎.</div>
         </li>
     </ul>
 
-    <!-- زر START NOW -->
-    <a href="https://t.me/Tgstarssavebot" class="start-button">START NOW 🚀</a>
-
+    <a href="https://t.me/Tgstarssavebot?start=1" class="start-button">START NOW 🚀</a>
 </div>
+
+<script>
+    // Fade-in on scroll
+    const items = document.querySelectorAll('li');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    items.forEach(item => observer.observe(item));
+</script>
 
 </body>
 </html>
