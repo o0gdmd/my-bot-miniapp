@@ -98,47 +98,21 @@
     <div class="bot-title">🌟 Stars & TON Wallet Bot 💎</div>
 
     <ul>
-        <li>
-            <span class="emoji">✨</span>
-            <div class="feature-text"><span class="highlight">User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀. Smooth UX.</div>
-        </li>
-        <li>
-            <span class="emoji">💰</span>
-            <div class="feature-text"><span class="highlight">Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅.</div>
-        </li>
-        <li>
-            <span class="emoji">🏧</span>
-            <div class="feature-text"><span class="highlight">Secure Withdrawals:</span> Users request withdrawals safely. Admin notifications 📩.</div>
-        </li>
-        <li>
-            <span class="emoji">👛</span>
-            <div class="feature-text"><span class="highlight">TON Wallet Integration:</span> Set/update TON wallet 💎. All transactions linked.</div>
-        </li>
-        <li>
-            <span class="emoji">🌟</span>
-            <div class="feature-text"><span class="highlight">VIP Levels & Rewards:</span> Earn VIP levels 🏅 based on deposits. Unlock perks 🔥.</div>
-        </li>
-        <li>
-            <span class="emoji">🚀</span>
-            <div class="feature-text"><span class="highlight">Mini App Support:</span> Launch Mini App 🌐. Secure Telegram initData validation 🔒.</div>
-        </li>
-        <li>
-            <span class="emoji">📊</span>
-            <div class="feature-text"><span class="highlight">Admin Notifications:</span> Instant updates for deposits, withdrawals, VIP upgrades 📩.</div>
-        </li>
-        <li>
-            <span class="emoji">🔒</span>
-            <div class="feature-text"><span class="highlight">Secure Backend:</span> PostgreSQL 💾. Handles concurrent users ⚡. Ensures payment & wallet data integrity 🔐.</div>
-        </li>
-        <li>
-            <span class="emoji">🌟</span>
-            <div class="feature-text"><span class="highlight">Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience 🚀💎.</div>
-        </li>
+        <li><span class="emoji">✨</span><div class="feature-text"><span class="highlight">User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀. Smooth UX.</div></li>
+        <li><span class="emoji">💰</span><div class="feature-text"><span class="highlight">Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅.</div></li>
+        <li><span class="emoji">🏧</span><div class="feature-text"><span class="highlight">Secure Withdrawals:</span> Users request withdrawals safely. Admin notifications 📩.</div></li>
+        <li><span class="emoji">👛</span><div class="feature-text"><span class="highlight">TON Wallet Integration:</span> Set/update TON wallet 💎. All transactions linked.</div></li>
+        <li><span class="emoji">🌟</span><div class="feature-text"><span class="highlight">VIP Levels & Rewards:</span> Earn VIP levels 🏅 based on deposits. Unlock perks 🔥.</div></li>
+        <li><span class="emoji">🚀</span><div class="feature-text"><span class="highlight">Mini App Support:</span> Launch Mini App 🌐. Secure Telegram initData validation 🔒.</div></li>
+        <li><span class="emoji">📊</span><div class="feature-text"><span class="highlight">Admin Notifications:</span> Instant updates for deposits, withdrawals, VIP upgrades 📩.</div></li>
+        <li><span class="emoji">🔒</span><div class="feature-text"><span class="highlight">Secure Backend:</span> PostgreSQL 💾. Handles concurrent users ⚡. Ensures payment & wallet data integrity 🔐.</div></li>
+        <li><span class="emoji">🌟</span><div class="feature-text"><span class="highlight">Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience 🚀💎.</div></li>
     </ul>
 
-    <a href="https://t.me/Tgstarssavebot?start=1" class="start-button">START NOW 🚀</a>
+    <button class="start-button" onclick="startBot()">START NOW 🚀</button>
 </div>
 
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
     // Fade-in on scroll
     const items = document.querySelectorAll('li');
@@ -149,8 +123,18 @@
             }
         });
     }, { threshold: 0.2 });
-
     items.forEach(item => observer.observe(item));
+
+    // Send start and close Mini App
+    function startBot() {
+        if (window.Telegram && Telegram.WebApp) {
+            Telegram.WebApp.sendData("/start");
+            Telegram.WebApp.close();
+        } else {
+            // fallback (if opened outside Telegram)
+            window.location.href = "https://t.me/Tgstarssavebot?start=1";
+        }
+    }
 </script>
 
 </body>
