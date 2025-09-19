@@ -15,26 +15,22 @@
     }
 
     @keyframes background-pan {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        from { background-position: 0 0; }
+        to { background-position: -10000px 5000px; }
     }
 
     body {
         font-family: 'Inter', sans-serif;
         background-color: var(--tg-dark);
-        background-image: radial-gradient(ellipse at center, rgba(10, 20, 40, 0.8) 0%, rgba(10, 10, 16, 1) 70%),
-                          url('https://i.imgur.com/s6541I4.jpg');
-        background-size: cover;
-        background-blend-mode: screen;
+        /* FIX: Replaced the old background image which had text with a clean star texture */
+        background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
         color: var(--text-primary);
         margin: 0;
-        /* SCROLL FIX: Allow body to scroll */
         overflow-x: hidden; 
-        animation: background-pan 60s ease-in-out infinite;
+        animation: background-pan 200s linear infinite;
     }
 
-    /* SCROLL FIX: Animation scene is now a fixed background layer */
+    /* Animation scene is a fixed background layer */
     .scene {
         position: fixed;
         top: 0;
@@ -125,7 +121,7 @@
         }
     }
 
-    /* SCROLL FIX: Main content container is now a scrollable element on top of the scene */
+    /* Main content container is a scrollable element on top of the scene */
     .container {
         max-width: 800px;
         padding: 40px;
