@@ -70,24 +70,29 @@
         color: #ffd700;
         font-weight: bold;
     }
+    /* Glassmorphic Start Button */
     .start-button {
         display: inline-block;
         margin-top: 25px;
-        padding: 15px 45px;
-        font-size: 1.5rem;
-        font-weight: bold;
+        padding: 18px 50px;
+        font-size: 1.6rem;
+        font-weight: 700;
         color: #fff;
-        background: linear-gradient(45deg, #ff7e5f, #feb47b);
-        border: none;
-        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255,0.3);
         cursor: pointer;
         text-decoration: none;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition: all 0.3s ease;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     }
     .start-button:hover {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.6);
     }
 </style>
 </head>
