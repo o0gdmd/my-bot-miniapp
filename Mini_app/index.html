@@ -4,95 +4,130 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stars & TON Wallet Bot</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+    @keyframes move-stars {
+        from { background-position: 0 0; }
+        to { background-position: -10000px 5000px; }
+    }
+
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
-        color: #fff;
+        font-family: 'Exo 2', sans-serif;
+        background-color: #010411;
+        background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+        color: #cdd5f0;
         margin: 0;
-        padding: 0;
-        font-size: 14px;
+        padding: 20px;
+        font-size: 16px;
+        min-height: 100vh;
+        animation: move-stars 200s linear infinite;
     }
+
     .container {
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 25px;
-        background-color: rgba(0,0,0,0.5);
-        border-radius: 20px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+        max-width: 850px;
+        margin: 40px auto;
+        padding: 35px;
+        background: radial-gradient(ellipse at center, rgba(14, 21, 58, 0.7) 0%, rgba(5, 7, 20, 0.8) 100%);
+        border: 1px solid rgba(0, 191, 255, 0.2);
+        box-shadow: 0 0 50px rgba(0, 191, 255, 0.1), inset 0 0 15px rgba(0, 191, 255, 0.1);
         text-align: center;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px));
     }
+
     .bot-image {
-        width: 150px;
-        height: 150px;
-        border-radius: 30px;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
         object-fit: cover;
-        margin-bottom: 15px;
-        border: 3px solid #ffd700;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-    .bot-title {
-        font-size: 1.6rem;
-        color: #ffd700;
         margin-bottom: 20px;
-        text-shadow: 1px 1px 5px #000;
+        border: 3px solid #00bfff;
+        box-shadow: 0 0 20px #00bfff, 0 0 30px #00bfff, inset 0 0 10px #00bfff;
+        animation: pulse-glow 2.5s infinite ease-in-out;
     }
+
+    @keyframes pulse-glow {
+        0%, 100% {
+            box-shadow: 0 0 20px #00bfff, 0 0 30px #00bfff, inset 0 0 10px #00bfff;
+        }
+        50% {
+            box-shadow: 0 0 30px #20cfff, 0 0 45px #20cfff, inset 0 0 15px #20cfff;
+        }
+    }
+
+    .bot-title {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 25px;
+        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+    }
+
     ul {
         list-style: none;
         padding: 0;
     }
+
     li {
-        background-color: rgba(255, 255, 255, 0.1);
-        margin: 8px 0;
-        padding: 15px;
-        border-radius: 15px;
-        font-size: 0.95rem;
-        line-height: 1.5;
+        background-color: rgba(0, 191, 255, 0.05);
+        margin: 10px 0;
+        padding: 18px;
+        border-left: 3px solid #00bfff;
+        font-size: 1rem;
+        line-height: 1.6;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.6s ease-out;
+        transform: translateX(-30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
+
     li.visible {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
+
     .emoji {
         font-size: 1.8rem;
-        margin-right: 12px;
+        margin-right: 15px;
+        filter: drop-shadow(0 0 5px #00bfff);
     }
+
     .feature-text {
         flex: 1;
         text-align: left;
     }
+
     .highlight {
-        color: #ffd700;
-        font-weight: bold;
+        color: #00bfff;
+        font-weight: 700;
     }
-    /* Glassmorphic Start Button */
+
     .start-button {
         display: inline-block;
-        margin-top: 25px;
-        padding: 18px 50px;
-        font-size: 1.6rem;
+        margin-top: 30px;
+        padding: 18px 60px;
+        font-size: 1.5rem;
         font-weight: 700;
         color: #fff;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 25px;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 2px solid rgba(255,255,255,0.3);
+        background-color: transparent;
+        border: 2px solid #00bfff;
+        border-radius: 50px;
         cursor: pointer;
         text-decoration: none;
         transition: all 0.3s ease;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        font-family: 'Exo 2', sans-serif;
+        text-shadow: 0 0 10px #00bfff;
+        box-shadow: 0 0 15px #00bfff, inset 0 0 10px rgba(0, 191, 255, 0.3);
     }
+
     .start-button:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+        background-color: #00bfff;
+        color: #010411;
+        transform: scale(1.05);
+        text-shadow: none;
+        box-shadow: 0 0 25px #00bfff, 0 0 40px #00bfff;
     }
 </style>
 </head>
@@ -103,37 +138,44 @@
     <div class="bot-title">🌟 Stars & TON Wallet Bot 💎</div>
 
     <ul>
-        <li><span class="emoji">✨</span><div class="feature-text"><span class="highlight">User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀. Smooth UX.</div></li>
-        <li><span class="emoji">💰</span><div class="feature-text"><span class="highlight">Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅.</div></li>
-        <li><span class="emoji">🏧</span><div class="feature-text"><span class="highlight">Secure Withdrawals:</span> Users request withdrawals safely. Admin notifications 📩.</div></li>
-        <li><span class="emoji">👛</span><div class="feature-text"><span class="highlight">TON Wallet Integration:</span> Set/update TON wallet 💎. All transactions linked.</div></li>
-        <li><span class="emoji">🌟</span><div class="feature-text"><span class="highlight">VIP Levels & Rewards:</span> Earn VIP levels 🏅 based on deposits. Unlock perks 🔥.</div></li>
-        <li><span class="emoji">🚀</span><div class="feature-text"><span class="highlight">Mini App Support:</span> Launch Mini App 🌐. Secure Telegram initData validation 🔒.</div></li>
-        <li><span class="emoji">📊</span><div class="feature-text"><span class="highlight">Admin Notifications:</span> Instant updates for deposits, withdrawals, VIP upgrades 📩.</div></li>
-        <li><span class="emoji">🔒</span><div class="feature-text"><span class="highlight">Secure Backend:</span> PostgreSQL 💾. Handles concurrent users ⚡. Ensures payment & wallet data integrity 🔐.</div></li>
-        <li><span class="emoji">🌟</span><div class="feature-text"><span class="highlight">Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience 🚀💎.</div></li>
-    </ul>
+        </ul>
 
     <button class="start-button" onclick="openBot()">START NOW 🚀</button>
 </div>
 
 <script>
-    // Fade-in on scroll
-    const items = document.querySelectorAll('li');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting){
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.2 });
-    items.forEach(item => observer.observe(item));
+    const features = [
+        {emoji:"✨", html:"<span class='highlight'>User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀. Smooth UX."},
+        {emoji:"💰", html:"<span class='highlight'>Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅."},
+        {emoji:"🏧", html:"<span class='highlight'>Secure Withdrawals:</span> Users request withdrawals safely. Admin notifications 📩."},
+        {emoji:"👛", html:"<span class='highlight'>TON Wallet Integration:</span> Set/update TON wallet 💎. All transactions linked."},
+        {emoji:"🌟", html:"<span class='highlight'>VIP Levels & Rewards:</span> Earn VIP levels 🏅 based on deposits. Unlock perks 🔥."},
+        {emoji:"🚀", html:"<span class='highlight'>Mini App Support:</span> Launch Mini App 🌐. Secure Telegram initData validation 🔒."},
+        {emoji:"📊", html:"<span class='highlight'>Admin Notifications:</span> Instant updates for deposits, withdrawals, VIP upgrades 📩."},
+        {emoji:"🔒", html:"<span class='highlight'>Secure Backend:</span> PostgreSQL 💾. Handles concurrent users ⚡. Ensures payment & wallet data integrity 🔐."},
+        {emoji:"🌟", html:"<span class='highlight'>Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience 🚀💎."}
+    ];
 
-    // Close Mini App & open bot with /start
+    const listElement = document.querySelector('.container ul');
+
+    features.forEach((feature, index) => {
+        setTimeout(() => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span class="emoji">${feature.emoji}</span><div class="feature-text">${feature.html}</div>`;
+            listElement.appendChild(li);
+            
+            // Force reflow to enable transition
+            window.getComputedStyle(li).opacity; 
+            li.classList.add('visible');
+        }, index * 150); // Staggered animation
+    });
+
     function openBot() {
+        // This function attempts to close the Mini App if it's open
         if (window.Telegram && window.Telegram.WebApp) {
             Telegram.WebApp.close();
         }
+        // Redirect to the bot's start link
         window.location.href = "https://t.me/Tgstarssavebot?start=1";
     }
 </script>
