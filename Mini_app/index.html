@@ -29,26 +29,28 @@
         background-blend-mode: screen;
         color: var(--text-primary);
         margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        overflow: hidden;
+        /* SCROLL FIX: Allow body to scroll */
+        overflow-x: hidden; 
         animation: background-pan 60s ease-in-out infinite;
     }
 
+    /* SCROLL FIX: Animation scene is now a fixed background layer */
     .scene {
-        position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        z-index: 1;
+        overflow: hidden; /* Hide stars that fly off-screen */
     }
     
     /* --- Central Energy Core --- */
     .core {
         position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 300px;
         height: 300px;
         filter: blur(5px);
@@ -96,6 +98,11 @@
     }
 
     /* --- Flying Stars Animation --- */
+    .stars-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
     .star {
         position: absolute;
         width: 10px;
@@ -110,17 +117,6 @@
         opacity: 0;
     }
 
-    /* Creating multiple stars with different paths and delays */
-    .star:nth-child(1) { animation-duration: 5s; animation-delay: 0s; }
-    .star:nth-child(2) { animation-duration: 6s; animation-delay: 0.5s; }
-    .star:nth-child(3) { animation-duration: 4s; animation-delay: 1s; }
-    .star:nth-child(4) { animation-duration: 7s; animation-delay: 1.5s; }
-    .star:nth-child(5) { animation-duration: 5.5s; animation-delay: 2s; }
-    .star:nth-child(6) { animation-duration: 6.5s; animation-delay: 2.5s; }
-    .star:nth-child(7) { animation-duration: 4.5s; animation-delay: 3s; }
-    .star:nth-child(8) { animation-duration: 8s; animation-delay: 3.5s; }
-
-
     @keyframes fly {
         0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
         100% {
@@ -129,10 +125,11 @@
         }
     }
 
-    /* --- Main Content Container --- */
+    /* SCROLL FIX: Main content container is now a scrollable element on top of the scene */
     .container {
         max-width: 800px;
         padding: 40px;
+        margin: 50px auto; /* Allows spacing and scrolling */
         text-align: center;
         position: relative;
         z-index: 10;
@@ -221,21 +218,24 @@
         <div class="core-ring ring1"></div>
         <div class="core-ring ring2"></div>
     </div>
-
     <div class="stars-container"></div>
+</div>
     
-    <div class="container">
-        <img class="bot-image" src="https://i.postimg.cc/NMY0c6Nf/IMG-4506.jpg" alt="Bot Image">
-        <div class="bot-title"><span>Stars</span> & TON Wallet Bot</div>
-        <ul>
-            <li><span class="emoji">✨</span><div class="feature-text"><span class="highlight">User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀.</div></li>
-            <li><span class="emoji">💰</span><div class="feature-text"><span class="highlight">Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅.</div></li>
-            <li><span class="emoji">🏧</span><div class="feature-text"><span class="highlight">Secure Withdrawals:</span> Users request withdrawals safely. Admin notifications 📩.</div></li>
-            <li><span class="emoji">👛</span><div class="feature-text"><span class="highlight">TON Wallet Integration:</span> Set/update TON wallet 💎. All transactions linked.</div></li>
-            <li><span class="emoji">🌟</span><div class="feature-text"><span class="highlight">VIP Levels & Rewards:</span> Earn VIP levels 🏅 based on deposits. Unlock perks 🔥.</div></li>
-        </ul>
-        <button class="start-button" onclick="openBot()">START NOW</button>
-    </div>
+<div class="container">
+    <img class="bot-image" src="https://i.postimg.cc/NMY0c6Nf/IMG-4506.jpg" alt="Bot Image">
+    <div class="bot-title"><span>Stars</span> & TON Wallet Bot</div>
+    <ul>
+        <li><span class="emoji">✨</span><div class="feature-text"><span class="highlight">User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀. Smooth UX.</div></li>
+        <li><span class="emoji">💰</span><div class="feature-text"><span class="highlight">Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅.</div></li>
+        <li><span class="emoji">🏧</span><div class="feature-text"><span class="highlight">Secure Withdrawals:</span> Users request withdrawals safely. Admin notifications 📩.</div></li>
+        <li><span class="emoji">👛</span><div class="feature-text"><span class="highlight">TON Wallet Integration:</span> Set/update TON wallet 💎. All transactions linked.</div></li>
+        <li><span class="emoji">🌟</span><div class="feature-text"><span class="highlight">VIP Levels & Rewards:</span> Earn VIP levels 🏅 based on deposits. Unlock perks 🔥.</div></li>
+        <li><span class="emoji">🚀</span><div class="feature-text"><span class="highlight">Mini App Support:</span> Launch Mini App 🌐. Secure Telegram initData validation 🔒.</div></li>
+        <li><span class="emoji">📊</span><div class="feature-text"><span class="highlight">Admin Notifications:</span> Instant updates for deposits, withdrawals, VIP upgrades 📩.</div></li>
+        <li><span class="emoji">🔒</span><div class="feature-text"><span class="highlight">Secure Backend:</span> PostgreSQL 💾. Handles concurrent users ⚡. Ensures payment & wallet data integrity 🔐.</div></li>
+        <li><span class="emoji">🌟</span><div class="feature-text"><span class="highlight">Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience 🚀💎.</div></li>
+    </ul>
+    <button class="start-button" onclick="openBot()">START NOW</button>
 </div>
 
 <script>
@@ -246,7 +246,6 @@
         const star = document.createElement('div');
         star.classList.add('star');
         
-        // Randomize animation properties and flight paths
         const angle = Math.random() * 2 * Math.PI;
         const x = Math.cos(angle);
         const y = Math.sin(angle);
@@ -254,8 +253,8 @@
         star.style.setProperty('--x', x);
         star.style.setProperty('--y', y);
         
-        star.style.animationDuration = `${4 + Math.random() * 4}s`; // 4 to 8 seconds
-        star.style.animationDelay = `${Math.random() * 5}s`; // 0 to 5 seconds
+        star.style.animationDuration = `${4 + Math.random() * 4}s`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
         
         starsContainer.appendChild(star);
     }
