@@ -7,244 +7,259 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
     :root {
-        --tg-dark: #0E1621;
-        --tg-dark-blue: #18222D;
-        --tg-blue: #2AABEE;
+        --tg-dark: #0A0A10;
         --tg-star-gold: #FFD700;
+        --tg-blue-glow: #00AEEF;
         --text-primary: #FFFFFF;
-        --text-secondary: #AAAAAA;
+        --text-secondary: #B0B8C4;
     }
 
-    /* Animated Stars Background */
-    @keyframes move-twink-back {
-        from {background-position:0 0;}
-        to {background-position:-10000px 5000px;}
+    @keyframes background-pan {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
+
     body {
         font-family: 'Inter', sans-serif;
-        background: var(--tg-dark);
+        background-color: var(--tg-dark);
+        background-image: radial-gradient(ellipse at center, rgba(10, 20, 40, 0.8) 0%, rgba(10, 10, 16, 1) 70%),
+                          url('https://i.imgur.com/s6541I4.jpg');
+        background-size: cover;
+        background-blend-mode: screen;
         color: var(--text-primary);
         margin: 0;
-        padding: 40px 20px;
-        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
+        min-height: 100vh;
         overflow: hidden;
+        animation: background-pan 60s ease-in-out infinite;
     }
-    .stars-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
+
+    .scene {
+        position: relative;
         width: 100%;
         height: 100%;
-        z-index: -1;
-        background: transparent url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
-        animation: move-twink-back 200s linear infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-
-    /* 3D Card Effect */
-    .perspective-container {
-        perspective: 1000px;
+    
+    /* --- Central Energy Core --- */
+    .core {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        filter: blur(5px);
     }
-
-    .container {
-        max-width: 800px;
-        padding: 40px;
-        background: linear-gradient(145deg, rgba(30, 42, 55, 0.7), rgba(14, 22, 33, 0.8));
-        border-radius: 24px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        transform-style: preserve-3d;
-        transition: transform 0.1s linear;
-        position: relative;
-    }
-
-    .container::before {
+    .core::before, .core::after {
         content: '';
         position: absolute;
         inset: 0;
-        border-radius: 24px;
-        padding: 1px;
-        background: linear-gradient(145deg, rgba(255, 215, 0, 0.4), rgba(42, 171, 238, 0.4));
-        -webkit-mask: 
-             linear-gradient(#fff 0 0) content-box, 
-             linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-                mask-composite: exclude;
-        pointer-events: none;
+        border-radius: 50%;
+    }
+    .core::before {
+        background: radial-gradient(circle, var(--tg-blue-glow) 10%, transparent 60%);
+        animation: pulse 4s ease-in-out infinite;
+    }
+    .core::after {
+        background: radial-gradient(circle, var(--tg-star-gold) 10%, transparent 50%);
+        animation: pulse 4s ease-in-out infinite reverse;
+    }
+    .core-ring {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid;
+        animation: rotate 10s linear infinite;
+    }
+    .ring1 {
+        border-color: var(--tg-blue-glow);
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+    .ring2 {
+        border-color: var(--tg-star-gold);
+        transform: scale(1.5);
+        opacity: 0.3;
+        animation-direction: reverse;
+        animation-duration: 15s;
+    }
+
+    @keyframes rotate {
+        to { transform: scale(var(--scale, 1)) rotate(360deg); }
+    }
+    @keyframes pulse {
+        50% { transform: scale(1.2); opacity: 0.5; }
+    }
+
+    /* --- Flying Stars Animation --- */
+    .star {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: var(--tg-star-gold);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--tg-star-gold), 0 0 20px var(--tg-star-gold);
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        animation-name: fly;
+        animation-timing-function: ease-out;
+        animation-iteration-count: infinite;
+        opacity: 0;
+    }
+
+    /* Creating multiple stars with different paths and delays */
+    .star:nth-child(1) { animation-duration: 5s; animation-delay: 0s; }
+    .star:nth-child(2) { animation-duration: 6s; animation-delay: 0.5s; }
+    .star:nth-child(3) { animation-duration: 4s; animation-delay: 1s; }
+    .star:nth-child(4) { animation-duration: 7s; animation-delay: 1.5s; }
+    .star:nth-child(5) { animation-duration: 5.5s; animation-delay: 2s; }
+    .star:nth-child(6) { animation-duration: 6.5s; animation-delay: 2.5s; }
+    .star:nth-child(7) { animation-duration: 4.5s; animation-delay: 3s; }
+    .star:nth-child(8) { animation-duration: 8s; animation-delay: 3.5s; }
+
+
+    @keyframes fly {
+        0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
+        100% {
+            transform: translate(calc(var(--x) * 150vw), calc(var(--y) * 150vh)) scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    /* --- Main Content Container --- */
+    .container {
+        max-width: 800px;
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        animation: content-appear 2s ease-out forwards;
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    @keyframes content-appear {
+      to { opacity: 1; transform: scale(1); }
     }
 
     .bot-image {
-        width: 130px;
-        height: 130px;
+        width: 140px;
+        height: 140px;
         border-radius: 50%;
         object-fit: cover;
         margin-bottom: 20px;
-        border: 3px solid var(--tg-star-gold);
-        box-shadow: 0 0 15px var(--tg-star-gold), 0 0 25px var(--tg-star-gold);
-        transform: translateZ(50px); /* 3D effect */
+        border: 4px solid var(--tg-star-gold);
+        box-shadow: 0 0 25px var(--tg-star-gold), 0 0 40px var(--tg-star-gold), inset 0 0 15px rgba(0,0,0,0.5);
     }
 
     .bot-title {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 25px;
-        text-shadow: 0 0 10px rgba(0,0,0,0.5);
-        transform: translateZ(40px); /* 3D effect */
+        text-shadow: 0 0 15px var(--tg-blue-glow);
     }
     .bot-title span {
         color: var(--tg-star-gold);
+        text-shadow: 0 0 15px var(--tg-star-gold);
     }
 
-    ul {
-        list-style: none;
-        padding: 0;
-        transform: translateZ(20px); /* 3D effect */
-    }
-
+    ul { list-style: none; padding: 0; }
     li {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.4);
         margin: 10px 0;
         padding: 15px;
         border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
         align-items: center;
-        opacity: 0;
-        transform: scale(0.95);
-        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
-
-    li.visible {
-        opacity: 1;
-        transform: scale(1);
-    }
-
     .emoji {
         font-size: 1.6rem;
         margin-right: 15px;
-        min-width: 40px;
-        height: 40px;
-        display: grid;
-        place-items: center;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 50%;
+        filter: drop-shadow(0 0 5px var(--tg-blue-glow));
     }
-
     .feature-text {
         flex: 1;
         text-align: left;
-        font-size: 0.95rem;
+        font-size: 1rem;
         line-height: 1.6;
         color: var(--text-secondary);
     }
-
     .highlight {
         color: var(--text-primary);
         font-weight: 600;
     }
 
-    /* Shine Button */
     .start-button {
         display: inline-block;
         margin-top: 30px;
-        padding: 16px 55px;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #fff;
-        background: var(--tg-blue);
+        padding: 18px 60px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--tg-dark);
+        background: var(--tg-star-gold);
         border: none;
         border-radius: 15px;
         cursor: pointer;
         text-decoration: none;
         transition: all 0.3s ease;
-        box-shadow: 0 5px 20px rgba(42, 171, 238, 0.4);
-        position: relative;
-        overflow: hidden;
-        transform: translateZ(60px) scale(1.1); /* 3D effect */
+        box-shadow: 0 0 20px var(--tg-star-gold), 0 0 30px var(--tg-star-gold);
+        animation: pulse-button 2s infinite;
     }
-    .start-button:hover {
-        transform: translateZ(60px) scale(1.15);
-        box-shadow: 0 8px 30px rgba(42, 171, 238, 0.5);
+    @keyframes pulse-button {
+      50% { transform: scale(1.05); box-shadow: 0 0 30px var(--tg-star-gold), 0 0 50px var(--tg-star-gold); }
     }
-    .start-button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 75%;
-        height: 100%;
-        background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-        transform: skewX(-25deg);
-        transition: left 0.6s ease;
-    }
-    .start-button:hover::before {
-        left: 125%;
-    }
+
 </style>
 </head>
 <body>
-<div class="stars-bg"></div>
 
-<div class="perspective-container">
+<div class="scene">
+    <div class="core">
+        <div class="core-ring ring1"></div>
+        <div class="core-ring ring2"></div>
+    </div>
+
+    <div class="stars-container"></div>
+    
     <div class="container">
         <img class="bot-image" src="https://i.postimg.cc/NMY0c6Nf/IMG-4506.jpg" alt="Bot Image">
         <div class="bot-title"><span>Stars</span> & TON Wallet Bot</div>
-
         <ul>
-            </ul>
-
+            <li><span class="emoji">✨</span><div class="feature-text"><span class="highlight">User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀.</div></li>
+            <li><span class="emoji">💰</span><div class="feature-text"><span class="highlight">Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅.</div></li>
+            <li><span class="emoji">🏧</span><div class="feature-text"><span class="highlight">Secure Withdrawals:</span> Users request withdrawals safely. Admin notifications 📩.</div></li>
+            <li><span class="emoji">👛</span><div class="feature-text"><span class="highlight">TON Wallet Integration:</span> Set/update TON wallet 💎. All transactions linked.</div></li>
+            <li><span class="emoji">🌟</span><div class="feature-text"><span class="highlight">VIP Levels & Rewards:</span> Earn VIP levels 🏅 based on deposits. Unlock perks 🔥.</div></li>
+        </ul>
         <button class="start-button" onclick="openBot()">START NOW</button>
     </div>
 </div>
 
 <script>
-    // --- 3D TILT EFFECT ---
-    const container = document.querySelector('.container');
-    container.addEventListener('mousemove', (e) => {
-        const rect = container.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 20; // Adjust divisor for sensitivity
-        const rotateY = (centerX - x) / 20; // Adjust divisor for sensitivity
+    const starsContainer = document.querySelector('.stars-container');
+    const numStars = 20; // Increase for more stars
 
-        container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-    container.addEventListener('mouseleave', () => {
-        container.style.transform = 'rotateX(0deg) rotateY(0deg)';
-    });
-
-    // --- FEATURE LIST INJECTION & ANIMATION ---
-    const features = [
-        {emoji:"✨", html:"<span class='highlight'>User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀. Smooth UX."},
-        {emoji:"💰", html:"<span class='highlight'>Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅."},
-        {emoji:"🏧", html:"<span class='highlight'>Secure Withdrawals:</span> Users request withdrawals safely. Admin notifications 📩."},
-        {emoji:"👛", html:"<span class='highlight'>TON Wallet Integration:</span> Set/update TON wallet 💎. All transactions linked."},
-        {emoji:"🌟", html:"<span class='highlight'>VIP Levels & Rewards:</span> Earn VIP levels 🏅 based on deposits. Unlock perks 🔥."},
-        {emoji:"🚀", html:"<span class='highlight'>Mini App Support:</span> Launch Mini App 🌐. Secure Telegram initData validation 🔒."},
-        {emoji:"📊", html:"<span class='highlight'>Admin Notifications:</span> Instant updates for deposits, withdrawals, VIP upgrades 📩."},
-        {emoji:"🔒", html:"<span class='highlight'>Secure Backend:</span> PostgreSQL 💾. Handles concurrent users ⚡. Ensures payment & wallet data integrity 🔐."},
-        {emoji:"🌟", html:"<span class='highlight'>Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience 🚀💎."}
-    ];
-
-    const listElement = document.querySelector('.container ul');
-    features.forEach((feature, index) => {
-        setTimeout(() => {
-            const li = document.createElement('li');
-            li.innerHTML = `<span class="emoji">${feature.emoji}</span><div class="feature-text">${feature.html}</div>`;
-            listElement.appendChild(li);
-            
-            window.getComputedStyle(li).opacity;
-            li.classList.add('visible');
-        }, index * 100 + 300); // Staggered animation with a slight delay
-    });
-
-    // --- BOT LAUNCH FUNCTION ---
+    for (let i = 0; i < numStars; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        // Randomize animation properties and flight paths
+        const angle = Math.random() * 2 * Math.PI;
+        const x = Math.cos(angle);
+        const y = Math.sin(angle);
+        
+        star.style.setProperty('--x', x);
+        star.style.setProperty('--y', y);
+        
+        star.style.animationDuration = `${4 + Math.random() * 4}s`; // 4 to 8 seconds
+        star.style.animationDelay = `${Math.random() * 5}s`; // 0 to 5 seconds
+        
+        starsContainer.appendChild(star);
+    }
+    
     function openBot() {
         if (window.Telegram && window.Telegram.WebApp) {
             Telegram.WebApp.close();
