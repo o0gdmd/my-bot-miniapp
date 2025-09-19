@@ -109,10 +109,9 @@
         <li><span class="emoji">🌟</span><div class="feature-text"><span class="highlight">Interactive Features:</span> Supports star transactions via Mini App or chat ⭐. Gamified experience 🚀💎.</div></li>
     </ul>
 
-    <button class="start-button" onclick="startBot()">START NOW 🚀</button>
+    <button class="start-button" onclick="openBot()">START NOW 🚀</button>
 </div>
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
     // Fade-in on scroll
     const items = document.querySelectorAll('li');
@@ -125,15 +124,12 @@
     }, { threshold: 0.2 });
     items.forEach(item => observer.observe(item));
 
-    // Send start and close Mini App
-    function startBot() {
-        if (window.Telegram && Telegram.WebApp) {
-            Telegram.WebApp.sendData("/start");
+    // Close Mini App & open bot with /start
+    function openBot() {
+        if (window.Telegram && window.Telegram.WebApp) {
             Telegram.WebApp.close();
-        } else {
-            // fallback (if opened outside Telegram)
-            window.location.href = "https://t.me/Tgstarssavebot?start=1";
         }
+        window.location.href = "https://t.me/Tgstarssavebot?start=1";
     }
 </script>
 
