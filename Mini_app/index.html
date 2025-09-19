@@ -4,146 +4,222 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stars & TON Wallet Bot</title>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-    @keyframes move-stars {
-        from { background-position: 0 0; }
-        to { background-position: -10000px 5000px; }
+    :root {
+        --tg-dark: #0E1621;
+        --tg-dark-blue: #18222D;
+        --tg-blue: #2AABEE;
+        --tg-star-gold: #FFD700;
+        --text-primary: #FFFFFF;
+        --text-secondary: #AAAAAA;
     }
 
+    /* Animated Stars Background */
+    @keyframes move-twink-back {
+        from {background-position:0 0;}
+        to {background-position:-10000px 5000px;}
+    }
     body {
-        font-family: 'Exo 2', sans-serif;
-        background-color: #010411;
-        background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-        color: #cdd5f0;
+        font-family: 'Inter', sans-serif;
+        background: var(--tg-dark);
+        color: var(--text-primary);
         margin: 0;
-        padding: 20px;
-        font-size: 16px;
+        padding: 40px 20px;
         min-height: 100vh;
-        animation: move-stars 200s linear infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .stars-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: transparent url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+        animation: move-twink-back 200s linear infinite;
+    }
+
+    /* 3D Card Effect */
+    .perspective-container {
+        perspective: 1000px;
     }
 
     .container {
-        max-width: 850px;
-        margin: 40px auto;
-        padding: 35px;
-        background: radial-gradient(ellipse at center, rgba(14, 21, 58, 0.7) 0%, rgba(5, 7, 20, 0.8) 100%);
-        border: 1px solid rgba(0, 191, 255, 0.2);
-        box-shadow: 0 0 50px rgba(0, 191, 255, 0.1), inset 0 0 15px rgba(0, 191, 255, 0.1);
+        max-width: 800px;
+        padding: 40px;
+        background: linear-gradient(145deg, rgba(30, 42, 55, 0.7), rgba(14, 22, 33, 0.8));
+        border-radius: 24px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         text-align: center;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        transform-style: preserve-3d;
+        transition: transform 0.1s linear;
+        position: relative;
+    }
+
+    .container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 24px;
+        padding: 1px;
+        background: linear-gradient(145deg, rgba(255, 215, 0, 0.4), rgba(42, 171, 238, 0.4));
+        -webkit-mask: 
+             linear-gradient(#fff 0 0) content-box, 
+             linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+                mask-composite: exclude;
+        pointer-events: none;
     }
 
     .bot-image {
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
         border-radius: 50%;
         object-fit: cover;
         margin-bottom: 20px;
-        border: 3px solid #00bfff;
-        box-shadow: 0 0 20px #00bfff, 0 0 30px #00bfff, inset 0 0 10px #00bfff;
-        animation: pulse-glow 2.5s infinite ease-in-out;
-    }
-
-    @keyframes pulse-glow {
-        0%, 100% {
-            box-shadow: 0 0 20px #00bfff, 0 0 30px #00bfff, inset 0 0 10px #00bfff;
-        }
-        50% {
-            box-shadow: 0 0 30px #20cfff, 0 0 45px #20cfff, inset 0 0 15px #20cfff;
-        }
+        border: 3px solid var(--tg-star-gold);
+        box-shadow: 0 0 15px var(--tg-star-gold), 0 0 25px var(--tg-star-gold);
+        transform: translateZ(50px); /* 3D effect */
     }
 
     .bot-title {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
         font-weight: 700;
-        color: #ffffff;
         margin-bottom: 25px;
-        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        transform: translateZ(40px); /* 3D effect */
+    }
+    .bot-title span {
+        color: var(--tg-star-gold);
     }
 
     ul {
         list-style: none;
         padding: 0;
+        transform: translateZ(20px); /* 3D effect */
     }
 
     li {
-        background-color: rgba(0, 191, 255, 0.05);
+        background-color: rgba(0, 0, 0, 0.2);
         margin: 10px 0;
-        padding: 18px;
-        border-left: 3px solid #00bfff;
-        font-size: 1rem;
-        line-height: 1.6;
+        padding: 15px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         opacity: 0;
-        transform: translateX(-30px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        transform: scale(0.95);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
 
     li.visible {
         opacity: 1;
-        transform: translateX(0);
+        transform: scale(1);
     }
 
     .emoji {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         margin-right: 15px;
-        filter: drop-shadow(0 0 5px #00bfff);
+        min-width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
     }
 
     .feature-text {
         flex: 1;
         text-align: left;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
     }
 
     .highlight {
-        color: #00bfff;
-        font-weight: 700;
+        color: var(--text-primary);
+        font-weight: 600;
     }
 
+    /* Shine Button */
     .start-button {
         display: inline-block;
         margin-top: 30px;
-        padding: 18px 60px;
-        font-size: 1.5rem;
-        font-weight: 700;
+        padding: 16px 55px;
+        font-size: 1.2rem;
+        font-weight: 600;
         color: #fff;
-        background-color: transparent;
-        border: 2px solid #00bfff;
-        border-radius: 50px;
+        background: var(--tg-blue);
+        border: none;
+        border-radius: 15px;
         cursor: pointer;
         text-decoration: none;
         transition: all 0.3s ease;
-        font-family: 'Exo 2', sans-serif;
-        text-shadow: 0 0 10px #00bfff;
-        box-shadow: 0 0 15px #00bfff, inset 0 0 10px rgba(0, 191, 255, 0.3);
+        box-shadow: 0 5px 20px rgba(42, 171, 238, 0.4);
+        position: relative;
+        overflow: hidden;
+        transform: translateZ(60px) scale(1.1); /* 3D effect */
     }
-
     .start-button:hover {
-        background-color: #00bfff;
-        color: #010411;
-        transform: scale(1.05);
-        text-shadow: none;
-        box-shadow: 0 0 25px #00bfff, 0 0 40px #00bfff;
+        transform: translateZ(60px) scale(1.15);
+        box-shadow: 0 8px 30px rgba(42, 171, 238, 0.5);
+    }
+    .start-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 75%;
+        height: 100%;
+        background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+        transform: skewX(-25deg);
+        transition: left 0.6s ease;
+    }
+    .start-button:hover::before {
+        left: 125%;
     }
 </style>
 </head>
 <body>
+<div class="stars-bg"></div>
 
-<div class="container">
-    <img class="bot-image" src="https://i.postimg.cc/NMY0c6Nf/IMG-4506.jpg" alt="Bot Image">
-    <div class="bot-title">🌟 Stars & TON Wallet Bot 💎</div>
+<div class="perspective-container">
+    <div class="container">
+        <img class="bot-image" src="https://i.postimg.cc/NMY0c6Nf/IMG-4506.jpg" alt="Bot Image">
+        <div class="bot-title"><span>Stars</span> & TON Wallet Bot</div>
 
-    <ul>
-        </ul>
+        <ul>
+            </ul>
 
-    <button class="start-button" onclick="openBot()">START NOW 🚀</button>
+        <button class="start-button" onclick="openBot()">START NOW</button>
+    </div>
 </div>
 
 <script>
+    // --- 3D TILT EFFECT ---
+    const container = document.querySelector('.container');
+    container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 20; // Adjust divisor for sensitivity
+        const rotateY = (centerX - x) / 20; // Adjust divisor for sensitivity
+
+        container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    container.addEventListener('mouseleave', () => {
+        container.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+
+    // --- FEATURE LIST INJECTION & ANIMATION ---
     const features = [
         {emoji:"✨", html:"<span class='highlight'>User-Friendly Interface:</span> Clear main menu with Add Stars ➕, Withdraw 🏧, Account 👤, Launch Mini App 🚀. Smooth UX."},
         {emoji:"💰", html:"<span class='highlight'>Stars Management:</span> Purchase Stars ⭐ inside the bot. Balance updates instantly ✅."},
@@ -157,25 +233,22 @@
     ];
 
     const listElement = document.querySelector('.container ul');
-
     features.forEach((feature, index) => {
         setTimeout(() => {
             const li = document.createElement('li');
             li.innerHTML = `<span class="emoji">${feature.emoji}</span><div class="feature-text">${feature.html}</div>`;
             listElement.appendChild(li);
             
-            // Force reflow to enable transition
-            window.getComputedStyle(li).opacity; 
+            window.getComputedStyle(li).opacity;
             li.classList.add('visible');
-        }, index * 150); // Staggered animation
+        }, index * 100 + 300); // Staggered animation with a slight delay
     });
 
+    // --- BOT LAUNCH FUNCTION ---
     function openBot() {
-        // This function attempts to close the Mini App if it's open
         if (window.Telegram && window.Telegram.WebApp) {
             Telegram.WebApp.close();
         }
-        // Redirect to the bot's start link
         window.location.href = "https://t.me/Tgstarssavebot?start=1";
     }
 </script>
